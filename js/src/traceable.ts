@@ -131,7 +131,7 @@ export function traceable<Func extends (...args: any[]) => any>(
     if (firstInput == null) {
       inputs = {};
     } else if (rawInputs.length > 1) {
-      inputs = { args: rawInputs };
+      inputs = firstInput;
     } else if (isKVMap(firstInput)) {
       inputs = firstInput;
     } else {
