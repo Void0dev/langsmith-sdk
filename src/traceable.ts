@@ -1,11 +1,11 @@
 import { AsyncLocalStorage } from "async_hooks";
 
 import {
-  RunTree,
-  RunTreeConfig,
-  RunnableConfigLike,
-  isRunTree,
-  isRunnableConfigLike,
+    RunTree,
+    RunTreeConfig,
+    RunnableConfigLike,
+    isRunTree,
+    isRunnableConfigLike,
 } from "./run_trees.js";
 import { KVMap } from "./schemas.js";
 
@@ -131,7 +131,9 @@ export function traceable<Func extends (...args: any[]) => any>(
     if (firstInput == null) {
       inputs = {};
     } else if (rawInputs.length > 1) {
-      inputs = firstInput;
+      inputs = { args: rawInputs };
+      if (isKVMap(firstInput))
+        inputs = firstInput;
     } else if (isKVMap(firstInput)) {
       inputs = firstInput;
     } else {
